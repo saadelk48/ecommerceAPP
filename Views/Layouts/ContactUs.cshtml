@@ -1,0 +1,195 @@
+﻿<!-- Titre de la page -->
+<section class="page-title">
+    <div class="auto-container">
+        <h2>Contactez-nous</h2>
+        <ul class="bread-crumb clearfix">
+            <li><a asp-controller="Layouts" asp-action="Index">Accueil</a></li>
+            <li>Pages</li>
+            <li>Contactez-nous</li>
+        </ul>
+    </div>
+</section>
+<!-- Fin Titre de la page -->
+<!-- Section Page Contact -->
+<div class="contact-page-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!-- Colonne Info -->
+            <div class="info-column col-lg-4 col-md-12 col-sm-12">
+                <div class="inner-column">
+
+                    <!-- Boîte Info -->
+                    <div class="info-box">
+                        <div class="box-inner d-flex align-items-center">
+                            <div class="icon flaticon-email-1"></div>
+                            <div class="content">
+                                <strong>Adresse mail</strong>
+                                <a href="mailto:prinox@gmail.com">prinox@gmail.com</a><br>
+                                <a href="tel:+998757478492">+998757478492</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boîte Info -->
+                    <div class="info-box">
+                        <div class="box-inner d-flex align-items-center">
+                            <div class="icon flaticon-map"></div>
+                            <div class="content">
+                                <strong>Adresse du bureau</strong>
+                                <div class="text">Digital Agency Network 2021 Eastbourne Terrace</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boîte Info -->
+                    <div class="info-box">
+                        <div class="box-inner d-flex align-items-center">
+                            <div class="icon flaticon-call"></div>
+                            <div class="content">
+                                <strong>Numéro de téléphone</strong>
+                                <a href="tel:+880-123-456-789">+880 123 456 789</a><br>
+                                <a href="tel:+9987574">+9987574</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Colonne Carte -->
+            <div class="map-column col-lg-8 col-md-12 col-sm-12">
+                <div class="inner-column">
+                    <!-- Carte externe -->
+                    <div class="map-outer">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52493.02874346386!2d-1.9424976290242657!3d34.68463607163947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd7864984106d6ef%3A0x1d86b33244c4650!2sOujda!5e0!3m2!1sfr!2sma!4v1678996797308!5m2!1sfr!2sma" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Boxé -->
+        <div class="contact-boxed">
+            <!-- Boîte Titre -->
+            <div class="title-box">
+                <h3>Laissez-nous un message</h3>
+                <div class="text">Votre adresse e-mail ne sera pas publiée. Les champs obligatoires sont marqués *</div>
+            </div>
+
+            <!-- Formulaire de Contact -->
+            <div class="contact-form">
+                <form method="post" action="sendemail.php" id="contact-form">
+                    <div class="row clearfix">
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                            <input type="text" name="username" placeholder="Entrez votre nom" required="">
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                            <input type="text" name="email" placeholder="Entrez l'adresse e-mail*" required="">
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                            <select name="currency" class="custom-select-box" name="services" required>
+                                <option>Choisissez le type de service</option>
+                                <option>Ville 01</option>
+                                <option>Ville 02</option>
+                                <option>Ville 03</option>
+                                <option>Ville 04</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                            <input type="text" name="phone" placeholder="Entrez le numéro de téléphone" required="">
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <textarea class="" name="message" placeholder="Entrez votre message ici"></textarea>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                            <div class="buttons-box">
+                                <button class="theme-btn btn-style-one">
+                                    publier un commentaire
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <!-- Fin Formulaire de Contact -->
+
+        </div>
+        <!-- Fin Contact Boxé -->
+
+    </div>
+</div>
+<!-- Fin Section Page Contact -->
+<!-- Section Galerie -->
+<section class="gallery-section">
+    <div class="outer-container">
+        <div class="instagram-carousel owl-carousel owl-theme">
+
+            <!-- Galerie Insta -->
+            <div class="insta-gallery">
+                <img src="~/images/gallery/1.jpg" alt="" />
+                <div class="overlay-box">
+                    <div class="overlay-inner">
+                        <a class="lightbox-image icon flaticon-instagram" href="~/images/gallery/1.jpg"></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galerie Insta -->
+            <div class="insta-gallery">
+                <img src="~/images/gallery/2.jpg" alt="" />
+                <div class="overlay-box">
+                    <div class="overlay-inner">
+                        <a class="lightbox-image icon flaticon-instagram" href="~/images/gallery/1.jpg"></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galerie Insta -->
+            <div class="insta-gallery">
+                <img src="~/images/gallery/3.jpg" alt="" />
+                <div class="overlay-box">
+                    <div class="overlay-inner">
+                        <a class="lightbox-image icon flaticon-instagram" href="~/images/gallery/3.jpg"></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galerie Insta -->
+            <div class="insta-gallery">
+                <img src="~/images/gallery/4.jpg" alt="" />
+                <div class="overlay-box">
+                    <div class="overlay-inner">
+                        <a class="lightbox-image icon flaticon-instagram" href="~/images/gallery/4.jpg"></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galerie Insta -->
+            <div class="insta-gallery">
+                <img src="~/images/gallery/5.jpg" alt="" />
+                <div class="overlay-box">
+                    <div class="overlay-inner">
+                        <a class="lightbox-image icon flaticon-instagram" href="~/images/gallery/5.jpg"></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galerie Insta -->
+            <div class="insta-gallery">
+                <img src="~/images/gallery/6.jpg" alt="" />
+                <div class="overlay-box">
+                    <div class="overlay-inner">
+                        <a class="lightbox-image icon flaticon-instagram" href="~/images/gallery/6.jpg"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Fin Section Galerie -->

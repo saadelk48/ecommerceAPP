@@ -1,0 +1,136 @@
+﻿/* Style général de la sidebar */
+.cart-sidebar {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: auto; /* Laisser la largeur s'ajuster automatiquement */
+    max-width: 600px; /* Largeur maximale pour la sidebar */
+    height: 100%;
+    background: #f4f4f9;
+    border-left: 1px solid #ddd;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: right 0.3s ease-in-out;
+}
+
+/* Conteneur des produits ajoutés dans le panier */
+.cart-items-container {
+    max-height: calc(100% - 140px); /* Hauteur max avec un peu d'espace pour le bouton de paiement */
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+/* Eléments individuels du panier */
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+    /* Image du produit dans le panier */
+    .cart-item img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        margin-right: 15px;
+        border-radius: 5px;
+    }
+
+/* Détails des produits dans le panier */
+.item-details {
+    flex: 1;
+    font-size: 14px;
+}
+
+/* Actions des produits (ajouter, supprimer) */
+.item-actions button {
+    background-color: #ff5c5c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+    .item-actions button:hover {
+        background-color: #e34949;
+    }
+
+/* Styles pour la fermeture de la sidebar */
+.close-sidebar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+}
+
+    .close-sidebar:hover {
+        color: red;
+    }
+
+/* Style pour le total du panier */
+.total-price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+}
+
+/* Style pour le bouton de paiement */
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 20px;
+}
+
+    .checkout-btn:hover {
+        background-color: #45a049;
+    }
+
+/* Style pour le panier icon dans le navbar */
+.like-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.total-like {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff5c5c;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+    padding: 0;
+}

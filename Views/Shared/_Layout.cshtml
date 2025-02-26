@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>@ViewData["Title"] - ecommerceAPP</title>
+	<!-- Stylesheets -->
+	<link href="~/css/bootstrap.css" rel="stylesheet" asp-append-version="true">
+	<link href="~/css/style.css" rel="stylesheet" asp-append-version="true">
+	<link href="~/css/responsive.css" rel="stylesheet" asp-append-version="true">
+	<link href="~/css/addToCart.css" rel="stylesheet" asp-append-version="true">
+
+	<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" asp-append-version="true">
+	<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" asp-append-version="true">
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" asp-append-version="true">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" asp-append-version="true">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" asp-append-version="true">
+
+	<link rel="shortcut icon" href="~/images/trottinette.png" type="image/x-icon" asp-append-version="true">
+	<link rel="icon" href="~/images/trottinette.png" type="image/x-icon" asp-append-version="true">
+
+	<!-- Responsive -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<body>
+	<div class="page-wrapper">
+		<!-- Main Header -->
+		<header class="main-header">
+
+			<!-- Header Lower -->
+			<div class="header-lower">
+
+				<div class="auto-container">
+					<div class="inner-container d-flex justify-content-between align-items-center">
+
+						<div class="logo-box d-flex align-items-center">
+
+							<div class="nav-toggle-btn a-nav-toggle navSidebar-button">
+								<span class="hamburger">
+									<span class="top-bun"></span>
+									<span class="meat"></span>
+									<span class="bottom-bun"></span>
+								</span>
+							</div>
+
+							<!-- Logo -->
+							<div class="logo"><a asp-controller="Layouts" asp-action="Index">SCOOTER VOLT</a></div>
+						</div>
+						<div class="nav-outer clearfix">
+
+							<!-- Main Menu -->
+							<nav class="main-menu show navbar-expand-md">
+								<div class="navbar-header">
+									<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+								</div>
+
+								<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
+									<ul class="navigation clearfix">
+										<li><a asp-controller="Layouts" asp-action="Index">Accueil</a></li>
+										<li><a asp-controller="Layouts" asp-action="About">À propos</a></li>
+										<li><a asp-controller="Layouts" asp-action="Shop">Boutique</a></li>
+										<li><a asp-controller="Layouts" asp-action="Blog">Notre Blog</a></li>
+										<li><a asp-controller="Layouts" asp-action="ContactUs">Contactez-nous</a></li>
+									</ul>
+								</div>
+							</nav>
+						</div>
+
+						<div class="outer-box d-flex align-items-center">
+							<div class="options-box d-flex align-items-center">
+								<div class="search-box-outer">
+									<div class="search-box-btn">
+										<span class="flaticon-search-1"></span>
+									</div>
+								</div>
+								<!-- Conteneur de l’icône et de la sidebar -->
+								<div class="search-icon-wrapper" id="search-container">
+									<!-- Icône de recherche -->
+									<span class="search-icon">
+										<img src="~/images/icons/search.png" id="image-icon">
+									</span>
+
+									<!-- Sidebar flottante -->
+									<div class="image-sidebar" id="image-sidebar">
+										<input type="file" id="file-input">
+										<label for="file-input" id="browse-btn">📂 Choisir une image</label>
+									</div>
+								</div>
+
+								<a class="user-box flaticon-user-3" asp-controller="Layouts" asp-action="Register"></a>
+								<div class="like-box">
+									<a class="user-box flaticon-bag"></a>
+									<span class="total-like">0</span>
+								</div>
+							</div>
+							<div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sticky-header">
+				<div class="auto-container">
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="logo">
+							<a asp-controller="Layouts" asp-action="Index" title="">SCOOTER VOLT</a>
+						</div>
+						<div class="right-box">
+							<nav class="main-menu">
+							</nav>
+							<div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mobile-menu">
+				<div class="menu-backdrop"></div>
+				<div class="close-btn"><span class="icon flaticon-multiply"></span></div>
+				<nav class="menu-box">
+					<div class="nav-logo"><a asp-controller="Layouts" asp-action="Index"><img src="~/images/mobile-logo.png" asp-append-version="true" alt="" title=""></a></div>
+					<div class="search-box">
+						<form method="post" action="contact.html">
+							<div class="form-group">
+								<input type="search" name="search-field" value="" placeholder="Recherchez ici" required>
+								<button type="submit"><span class="icon flaticon-search-1"></span></button>
+							</div>
+						</form>
+					</div>
+					<div class="menu-outer"></div>
+				</nav>
+			</div>
+		</header>
+
+		<div class="cart-sidebar">
+			<!-- Bouton de fermeture de la sidebar -->
+			<span class="close-sidebar">&times;</span>
+
+			<!-- Contenu de la sidebar -->
+			<div class="cart-items-container">
+				<!-- Les items seront ajoutés ici dynamiquement -->
+			</div>
+			<div class="total-price">Total: 0 DH</div>
+
+			<!-- Bouton pour passer à la phase de paiement -->
+			<button class="checkout-btn">Passer à la caisse</button>
+		</div>
+
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<div class="pattern-layer-one" style="background-image: url(images/icons/pattern-3.png)"></div>
+			<div class="pattern-layer-two" style="background-image: url(images/icons/vector-2.png)"></div>
+			<div class="auto-container">
+
+				<!-- Widgets Section -->
+				<div class="widgets-section">
+					<div class="row clearfix">
+						<!-- Column -->
+						<div class="big-column col-lg-7 col-md-12 col-sm-12">
+							<div class="row clearfix">
+
+								<!-- Footer Column -->
+								<div class="footer-column col-lg-7 col-md-6 col-sm-12">
+									<div class="footer-widget links-widget">
+										<!-- Logo -->
+										<div class="logo"><a asp-controller="Layouts" asp-action="Index"> SCOOTER VOLT</a></div>
+										<div class="text">4517 Washington Ave. Manchester, Kentucky 39495</div>
+										<ul class="contact-list">
+											<li><span class="icon flaticon-map"></span>254 Lillian Blvd, Holbrook</li>
+											<li><span class="icon flaticon-call"></span>1-800-654-3210</li>
+										</ul>
+									</div>
+								</div>
+
+								<!-- Footer Column -->
+								<div class="footer-column col-lg-5 col-md-6 col-sm-12">
+									<div class="footer-widget links-widget">
+										<h5>Trouver rapidement</h5>
+										<ul class="page-list">
+											<li><a href="#">Ordinateurs et portables</a></li>
+											<li><a href="#">Appareils photo et photographie</a></li>
+											<li><a href="#">Smartphones et tablettes</a></li>
+											<li><a href="#">Jeux vidéo et consoles</a></li>
+											<li><a href="#">TV et audio</a></li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<!-- Column -->
+						<div class="big-column col-lg-5 col-md-12 col-sm-12">
+							<div class="row clearfix">
+
+								<!-- Footer Column -->
+								<div class="footer-column col-lg-7 col-md-6 col-sm-12">
+									<div class="footer-widget links-widget">
+										<h5>Liens rapides</h5>
+										<ul class="page-list">
+											<li><a href="#">Votre compte</a></li>
+											<li><a href="#">Retours et échanges</a></li>
+											<li><a href="#">Centre de retours</a></li>
+											<li><a href="#">Historique des achats</a></li>
+											<li><a href="#">Conditions générales</a></li>
+										</ul>
+									</div>
+								</div>
+
+								<!-- Footer Column -->
+								<div class="footer-column col-lg-5 col-md-6 col-sm-12">
+									<div class="footer-widget social-widget">
+										<h5>Suivez-nous</h5>
+										<div class="social-icons">
+											<a href="#" class="facebook"><span class="fa fa-facebook"></span></a>
+											<a href="#" class="twitter"><span class="fa fa-twitter"></span></a>
+											<a href="#" class="linkedin"><span class="fa fa-linkedin"></span></a>
+											<a href="#" class="instagram"><span class="fa fa-instagram"></span></a>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Footer Bottom -->
+				<div class="footer-bottom">
+					<div class="auto-container d-flex justify-content-between align-items-center">
+						<div class="copyright">© 2024 SCOOTER VOLT. Tous droits réservés.</div>
+						<div class="payment-options">
+							<img src="~/images/icons/cards.png" alt="Payment Methods" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- Popup de Recherche -->
+	<div class="search-popup">
+		<div class="color-layer"></div>
+		<button class="close-search"><span class="fa fa-arrow-up"></span></button>
+		<form method="post" action="blog.html">
+			<div class="form-group">
+				<input type="search" name="search-field" value="" placeholder="Rechercher ici" required="">
+				<button type="submit"><i class="fa fa-search"></i></button>
+			</div>
+		</form>
+	</div>
+
+	<!-- Scroll To Top -->
+	<div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-arrow-up"></span></div>
+
+	<script src="~/js/jquery.js"></script>
+	<script src="~/js/searchByImage.js"></script>
+	<script src="~/js/addToCart.js"></script>
+	<script src="~/js/popper.min.js"></script>
+	<script src="~/js/bootstrap.min.js"></script>
+	<script src="~/js/magnific-popup.min.js"></script>
+	<script src="~/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="~/js/appear.js"></script>
+	<script src="~/js/parallax.min.js"></script>
+	<script src="~/js/tilt.jquery.min.js"></script>
+	<script src="~/js/jquery.paroller.min.js"></script>
+	<script src="~/js/owl.js"></script>
+	<script src="~/js/wow.js"></script>
+	<script src="~/js/swiper.min.js"></script>
+	<script src="~/js/touchspin.js"></script>
+	<script src="~/js/odometer.js"></script>
+	<script src="~/js/mixitup.js"></script>
+	<script src="~/js/backToTop.js"></script>
+	<script src="~/js/jquery.marquee.min.js"></script>
+	<script src="~/js/nav-tool.js"></script>
+	<script src="~/js/jquery-ui.js"></script>
+	<script src="~/js/script.js" asp-append-version="true"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
