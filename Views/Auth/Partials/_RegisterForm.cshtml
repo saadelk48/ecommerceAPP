@@ -1,0 +1,42 @@
+﻿@model ecommerceAPP.ViewModels.RegisterVM
+
+<div class="styled-form">
+    <h4>Créer un compte</h4>
+    <form asp-controller="Auth" asp-action="Register" method="post">
+        <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" asp-for="Nom" class="form-control" placeholder="Entrez votre prénom*" required>
+            <span asp-validation-for="Nom" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Nom de famille</label>
+            <input type="text" asp-for="Prenom" class="form-control" placeholder="Entrez votre nom*" required>
+            <span asp-validation-for="Prenom" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Adresse e-mail</label>
+            <input type="email" asp-for="Email" class="form-control" placeholder="Entrez votre adresse e-mail*" required>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Mot de passe</label>
+            <input type="password" asp-for="MotDePasse" class="form-control" placeholder="Créez un mot de passe*" required>
+            <span asp-validation-for="MotDePasse" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Confirmer le mot de passe</label>
+            <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="Confirmez votre mot de passe*" required>
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="theme-btn btn-style-one">
+                S'inscrire
+            </button>
+        </div>
+    </form>
+</div>

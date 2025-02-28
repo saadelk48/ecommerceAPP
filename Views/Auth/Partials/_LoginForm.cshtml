@@ -1,0 +1,24 @@
+﻿@model ecommerceAPP.ViewModels.LoginVM
+
+<div class="styled-form">
+    <h4>Se connecter</h4>
+    <form asp-controller="Auth" asp-action="Login" method="post">
+        <div class="form-group">
+            <label>Adresse e-mail</label>
+            <input type="text" asp-for="Email" class="form-control" placeholder="Entrez votre adresse e-mail*" required>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Mot de passe</label>
+            <input type="password" asp-for="Password" class="form-control" placeholder="Entrez votre mot de passe*" required>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="theme-btn btn-style-one">
+                Se connecter
+            </button>
+        </div>
+    </form>
+</div>
