@@ -37,7 +37,7 @@ namespace ecommerceAPP.Controllers
 
                     if (role == "Admin")
                     {
-                        return RedirectToAction("Index", "Admin"); // Redirect to Admin Dashboard
+                        return RedirectToAction("Index", "Category"); // Redirect to Admin Dashboard
                     }
                     else if (role == "Client")
                     {
