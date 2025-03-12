@@ -7,6 +7,7 @@
         public string Description { get; set; }
         public double Prix { get; set; }
         public int StockQuantites { get; set; }
+        public string ImagePath { get; set; }
 
         public int CategorieId { get; set; }
         public Categorie Categorie { get; set; }

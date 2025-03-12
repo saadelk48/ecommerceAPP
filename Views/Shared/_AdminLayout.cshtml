@@ -245,6 +245,11 @@
                 </div>
             </div>
         </nav>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
         <!-- End Navbar -->
         <div class="container-fluid py-2">
             <footer class="footer py-4  ">
@@ -256,8 +261,6 @@
                                       document.write(new Date().getFullYear())
                                 </script>,
                                 made with <i class="fa fa-heart"></i> by
-                                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                                for a better web.
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -280,6 +283,8 @@
                 </div>
             </footer>
         </div>
+
+
     </main>
     <div class="fixed-plugin">
         <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
@@ -356,11 +361,7 @@
         </div>
     </div>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+
 
     <!--   Core JS Files   -->
     <script src="~/js/core/popper.min.js"></script>
