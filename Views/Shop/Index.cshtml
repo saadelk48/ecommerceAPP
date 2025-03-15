@@ -37,6 +37,15 @@
                                         <a href="@Url.Action("Details", "Shop", new { id = product.Id })">
                                             <img src="@product.ImagePath" alt="@product.Nom" />
                                         </a>
+                                        <span class="tag flaticon-bag"></span>
+                                        <div class="cart-box text-center">
+                                            <form method="post" class="cart" asp-controller="Cart" asp-action="AddToCart">
+                                                <input type="hidden" name="productId" value="@product.Id" />
+                                                <input type="hidden" name="quantity" id="form-quantity-@product.Id" value="1" />
+                                                <button type="submit" class="cart">Ajouter au panier</button> 
+                                               </form>
+                                          
+                                        </div>
                                     </div>
                                     <div class="lower-content">
                                         <div class="rating">
@@ -57,10 +66,13 @@
                                             </div>
                                             <div class="quantity-box">
                                                 <div class="item-quantity">
-                                                    <input class="qty-spinner" type="text" value="1" name="quantity">
+                                                    <input type="number" id="quantity-@product.Id" name="quantity" class="qty-spinner" min="1" value="1">
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- Add to Cart Button (Fixed with Form Submission) -->
+
                                     </div>
                                 </div>
                             </div>
@@ -99,3 +111,34 @@
         </div>
     </div>
 </div>
+
+<!-- JavaScript to Sync Quantity -->
+<script>
+    document.querySelectorAll(".cart-box form").forEach(form => {
+        form.addEventListener("submit", function (event) {
+            let productId = this.querySelector("input[name='productId']").value;
+            let quantityInput = document.getElementById("quantity-" + productId);
+            let formQuantity = this.querySelector("input[name='quantity']");
+            formQuantity.value = quantityInput.value;
+        });
+    });
+</script>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var successMessage = @Html.Raw(Json.Serialize(TempData["SuccessMessage"]));
+            if (successMessage && successMessage !== "null") {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Produit ajouté !',
+                    text: successMessage,
+                    showConfirmButton: false,
+                    timer: 2000 // Auto close after 2 seconds
+                });
+            }
+        });
+    </script>
+}

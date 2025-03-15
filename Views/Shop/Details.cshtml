@@ -3,8 +3,6 @@
 }
 @model ecommerceAPP.ViewModels.ProductVM
 
-
-
 <h2 class="mb-4">@Model.Nom</h2>
 
 <div class="row">
@@ -16,7 +14,9 @@
         <p><strong>Description:</strong> @Model.Description</p>
         <p><strong>Catégorie:</strong> @Model.CategorieNom</p>
 
-        <form method="post" action="#">
+        <!-- Add to Cart Form -->
+        <form method="post" asp-controller="Cart" asp-action="AddToCart">
+            <input type="hidden" name="productId" value="@Model.Id" />
             <div class="form-group">
                 <label>Quantité:</label>
                 <input type="number" name="quantity" value="1" min="1" class="form-control">

@@ -808,7 +808,7 @@
 	opacity:1;
 }
 
-.shop-item .image .cart-box a{
+.shop-item .image .cart-box button{
 	position:relative;
 	padding:10px 25px;
 	display:inline-block;
@@ -820,7 +820,7 @@
 	border:1px solid var(--color-seventyeight);
 }
 
-.shop-item .image .cart-box a:hover{
+.shop-item .image .cart-box button:hover{
 	color:var(--white-color);
 	border-color:var(--main-color);
 	background-color:var(--main-color);
