@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Se connecter ou S'inscrire";
+}
+
+<section class="page-title">
+    <div class="auto-container">
+        <h2>Page d'Authentification</h2>
+        <ul class="bread-crumb clearfix">
+            <li><a href="/">Accueil</a></li>
+            <li>Pages</li>
+            <li>Connexion / Inscription</li>
+        </ul>
+    </div>
+</section>
+
+<div class="register-section">
+    <div class="auto-container">
+        <div class="inner-container">
+            <div class="row clearfix">
+                <div class="column col-lg-6 col-md-12 col-sm-12">
+                    @await Html.PartialAsync("Partials/_LoginForm", new ecommerceAPP.ViewModels.LoginVM())
+                </div>
+
+                <div class="column col-lg-6 col-md-12 col-sm-12">
+                    @await Html.PartialAsync("Partials/_RegisterForm", new ecommerceAPP.ViewModels.RegisterVM())
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

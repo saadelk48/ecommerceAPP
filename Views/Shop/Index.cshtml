@@ -1,0 +1,144 @@
+﻿@model IEnumerable<ecommerceAPP.ViewModels.ProductVM>
+
+<!-- Page Title -->
+<section class="page-title">
+    <div class="auto-container">
+        <h2>Page de magasin</h2>
+        <ul class="bread-crumb clearfix">
+            <li><a asp-controller="Layouts" asp-action="Index">Accueil</a></li>
+            <li>Pages</li>
+            <li>Page de magasin</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Sidebar Page Container -->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="content-side col-lg-9 col-md-12 col-sm-12">
+                <div class="filter-box">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                        <div class="left-box d-flex align-items-center">
+                            <div class="results">
+                                Affichage de @Model.Count() résultats
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shops-outer">
+                    <div class="row clearfix">
+                        @foreach (var product in Model)
+                        {
+                            <div class="shop-item col-lg-4 col-md-4 col-sm-12">
+                                <div class="inner-box">
+                                    <div class="image">
+                                        <a href="@Url.Action("Details", "Shop", new { id = product.Id })">
+                                            <img src="@product.ImagePath" alt="@product.Nom" />
+                                        </a>
+                                        <span class="tag flaticon-bag"></span>
+                                        <div class="cart-box text-center">
+                                            <form method="post" class="cart" asp-controller="Cart" asp-action="AddToCart">
+                                                <input type="hidden" name="productId" value="@product.Id" />
+                                                <input type="hidden" name="quantity" id="form-quantity-@product.Id" value="1" />
+                                                <button type="submit" class="cart">Ajouter au panier</button> 
+                                               </form>
+                                          
+                                        </div>
+                                    </div>
+                                    <div class="lower-content">
+                                        <div class="rating">
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="light fa fa-star"></span>
+                                        </div>
+                                        <h6>
+                                            <a href="@Url.Action("Details", "Shop", new { id = product.Id })">
+                                                @product.Nom
+                                            </a>
+                                        </h6>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="price">
+                                                <span class="current-price">@product.Prix DH</span>
+                                            </div>
+                                            <div class="quantity-box">
+                                                <div class="item-quantity">
+                                                    <input type="number" id="quantity-@product.Id" name="quantity" class="qty-spinner" min="1" value="1">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Add to Cart Button (Fixed with Form Submission) -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Pagination Placeholder -->
+                    <ul class="styled-pagination text-center">
+                        <li class="next"><a href="#"><span class="fa fa-angle-double-left"></span></a></li>
+                        <li><a href="#" class="active">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li class="next"><a href="#"><span class="fa fa-angle-double-right"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar-side col-lg-3 col-md-12 col-sm-12">
+                <aside class="sidebar sticky-top">
+                    <div class="sidebar-widget category-widget">
+                        <div class="widget-content">
+                            <div class="sidebar-title">
+                                <h6>Catégories de produits</h6>
+                            </div>
+                            <ul class="category-list">
+                                @foreach (var category in ViewBag.Categories)
+                                {
+                                    <li><a href="#">@category.Nom</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to Sync Quantity -->
+<script>
+    document.querySelectorAll(".cart-box form").forEach(form => {
+        form.addEventListener("submit", function (event) {
+            let productId = this.querySelector("input[name='productId']").value;
+            let quantityInput = document.getElementById("quantity-" + productId);
+            let formQuantity = this.querySelector("input[name='quantity']");
+            formQuantity.value = quantityInput.value;
+        });
+    });
+</script>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var successMessage = @Html.Raw(Json.Serialize(TempData["SuccessMessage"]));
+            if (successMessage && successMessage !== "null") {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Produit ajouté !',
+                    text: successMessage,
+                    showConfirmButton: false,
+                    timer: 2000 // Auto close after 2 seconds
+                });
+            }
+        });
+    </script>
+}

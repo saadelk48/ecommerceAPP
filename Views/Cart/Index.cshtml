@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<ecommerceAPP.Models.CartItem>
+
+
+<h2>Votre Panier</h2>
+
+@if (Model.Count == 0)
+{
+    <p>Votre panier est vide.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nom</td>
+                    <td>@item.Prix DH</td>
+                    <td>
+                        <form asp-action="UpdateQuantity" asp-controller="Cart" method="post">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <input type="number" name="quantity" value="@item.Quantity" min="1" />
+                            <button type="submit">Mettre à jour</button>
+                        </form>
+                    </td>
+                    <td>@(item.Prix * item.Quantity) DH</td>
+                    <td>
+                        <a asp-action="RemoveFromCart" asp-controller="Cart" asp-route-productId="@item.ProductId">❌ Supprimer</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

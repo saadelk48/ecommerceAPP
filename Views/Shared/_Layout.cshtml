@@ -92,8 +92,8 @@
 
 								<a class="user-box flaticon-user-3" asp-controller="Layouts" asp-action="Register"></a>
 								<div class="like-box">
-									<a class="user-box flaticon-bag"></a>
-									<span class="total-like">0</span>
+									<a class="user-box flaticon-bag" asp-controller="Cart" asp-action="Index"></a>
+									@await Component.InvokeAsync("CartCount")
 								</div>
 							</div>
 							<div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>

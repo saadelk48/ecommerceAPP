@@ -1,6 +1,7 @@
 using ecommerceAPP.Data;
 using ecommerceAPP.Filters;
 using ecommerceAPP.Interfaces;
+using ecommerceAPP.Mappers;
 using ecommerceAPP.Repository;
 using ecommerceAPP.Services;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,10 @@ builder.Services.AddScoped<IUtilisateurRepository,UtilisateurRepository>();
 builder.Services.AddScoped<IAuthService,AuthService>();
 builder.Services.AddScoped<ISessionService, SessionService>();
 builder.Services.AddScoped<AuthenticationFilter>();
+builder.Services.AddScoped<ICategorieRepository, CategorieRepository>();
+builder.Services.AddScoped<IProduitRepository, ProduitRepository>();
+builder.Services.AddScoped<IFileUploadService, FileUploadService>();
+builder.Services.AddScoped<IProductMapper, ProductMapper>();
 builder.Services.AddScoped<AuthorizationFilter>(sp =>
     new AuthorizationFilter(sp.GetRequiredService<ISessionService>(), "Admin"));
 
@@ -43,6 +48,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Login}/{id?}");
+    pattern: "{controller=Auth}/{action=Login}/{id?}");
 
 app.Run();

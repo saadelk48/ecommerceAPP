@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ecommerceAPP.ViewModels.ProductVM
+
+<h2 class="mb-4">@Model.Nom</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="@Model.ImagePath" alt="@Model.Nom" width="100%" />
+    </div>
+    <div class="col-md-6">
+        <p><strong>Prix:</strong> @Model.Prix DH</p>
+        <p><strong>Description:</strong> @Model.Description</p>
+        <p><strong>Catégorie:</strong> @Model.CategorieNom</p>
+
+        <!-- Add to Cart Form -->
+        <form method="post" asp-controller="Cart" asp-action="AddToCart">
+            <input type="hidden" name="productId" value="@Model.Id" />
+            <div class="form-group">
+                <label>Quantité:</label>
+                <input type="number" name="quantity" value="1" min="1" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Ajouter au Panier</button>
+        </form>
+    </div>
+</div>

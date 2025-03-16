@@ -24,5 +24,14 @@ namespace ecommerceAPP.Repository
         {
             return _context.Utilisateurs.Find(id);
         }
+        public Utilisateur GetByEmail(string email) // ✅ New method to check for duplicate emails
+        {
+            return _context.Utilisateurs.FirstOrDefault(u => u.Email == email);
+        }
+        public void Add(Utilisateur user)
+        {
+            _context.Utilisateurs.Add(user);
+            _context.SaveChanges();
+        }
     }
 }
