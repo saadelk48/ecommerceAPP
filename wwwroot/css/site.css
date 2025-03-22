@@ -1,22 +1,76 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+/* Conteneur de l'ic?ne */
+.settings-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Ic?ne */
+.settings-icon {
+    font-size: 1.5rem;
+    color: black;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+    .settings-icon:hover {
+        color: #dc3545;
+    }
+
+/* Menu Param?tres (style sidebar) */
+.settings-menu {
+    position: absolute;
+    right: 0;
+    top: 40px; /* Juste en dessous de l'ic?ne */
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 200px;
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+    /* Style des options */
+    .settings-menu a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: black;
+        transition: background 0.3s;
+    }
+
+        .settings-menu a:hover {
+            background: #f0f0f0;
+        }
+
+    /* Animation d'apparition */
+    .settings-menu.show {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }

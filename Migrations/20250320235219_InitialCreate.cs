@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -11,62 +12,81 @@ namespace ecommerceAPP.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nom = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nom = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "PromoCodes",
                 columns: table => new
                 {
-                    Code = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Reduction = table.Column<float>(type: "real", nullable: false),
-                    DateExpiration = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EstActive = table.Column<bool>(type: "bit", nullable: false)
+                    Code = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Reduction = table.Column<float>(type: "float", nullable: false),
+                    DateExpiration = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    EstActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PromoCodes", x => x.Code);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Utilisateurs",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Prenom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MotDePasse = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
-                    Adresse = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telephone = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nom = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Prenom = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    MotDePasse = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Type = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Adresse = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Telephone = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Utilisateurs", x => x.Id);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Produits",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Prix = table.Column<double>(type: "float", nullable: false),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nom = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Prix = table.Column<double>(type: "double", nullable: false),
                     StockQuantites = table.Column<int>(type: "int", nullable: false),
+                    ImagePath = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     CategorieId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -78,18 +98,20 @@ namespace ecommerceAPP.Migrations
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Commandes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdClient = table.Column<int>(type: "int", nullable: false),
-                    MontantTotal = table.Column<double>(type: "float", nullable: false),
-                    DateCommande = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    MontantTotal = table.Column<double>(type: "double", nullable: false),
+                    DateCommande = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Status = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -100,20 +122,22 @@ namespace ecommerceAPP.Migrations
                         principalTable: "Utilisateurs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Commentaires",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdClient = table.Column<int>(type: "int", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     IdProduit = table.Column<int>(type: "int", nullable: false),
                     ProduitId = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateCommentaire = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Description = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DateCommentaire = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -130,20 +154,21 @@ namespace ecommerceAPP.Migrations
                         principalTable: "Utilisateurs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "LigneCommandes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdCommande = table.Column<int>(type: "int", nullable: false),
                     CommandeId = table.Column<int>(type: "int", nullable: false),
                     IdProduit = table.Column<int>(type: "int", nullable: false),
                     ProduitId = table.Column<int>(type: "int", nullable: false),
                     Quantite = table.Column<int>(type: "int", nullable: false),
-                    PrixTotal = table.Column<float>(type: "real", nullable: false)
+                    PrixTotal = table.Column<float>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -160,19 +185,22 @@ namespace ecommerceAPP.Migrations
                         principalTable: "Produits",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Livraisons",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdCommande = table.Column<int>(type: "int", nullable: false),
                     CommandeId = table.Column<int>(type: "int", nullable: false),
-                    AdresseLivraison = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StatusLivraison = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EstimationDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    AdresseLivraison = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    StatusLivraison = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EstimationDate = table.Column<DateTime>(type: "datetime(6)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -183,21 +211,24 @@ namespace ecommerceAPP.Migrations
                         principalTable: "Commandes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Paiements",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdClient = table.Column<int>(type: "int", nullable: false),
                     IdCommande = table.Column<int>(type: "int", nullable: false),
                     CommandeId = table.Column<int>(type: "int", nullable: false),
-                    Totale = table.Column<double>(type: "float", nullable: false),
-                    MethodePaiement = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DatePaiement = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Totale = table.Column<double>(type: "double", nullable: false),
+                    MethodePaiement = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Status = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DatePaiement = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -213,20 +244,22 @@ namespace ecommerceAPP.Migrations
                         column: x => x.IdClient,
                         principalTable: "Utilisateurs",
                         principalColumn: "Id");
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "Factures",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     IdCommande = table.Column<int>(type: "int", nullable: false),
                     IdClient = table.Column<int>(type: "int", nullable: false),
-                    DateEmission = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MontantTotal = table.Column<double>(type: "float", nullable: false),
+                    DateEmission = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    MontantTotal = table.Column<double>(type: "double", nullable: false),
                     IdPaiement = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Status = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -246,7 +279,8 @@ namespace ecommerceAPP.Migrations
                         column: x => x.IdClient,
                         principalTable: "Utilisateurs",
                         principalColumn: "Id");
-                });
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Commandes_IdClient",

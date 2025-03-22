@@ -12,7 +12,7 @@ using ecommerceAPP.Data;
 namespace ecommerceAPP.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250224185459_InitialCreate")]
+    [Migration("20250320235219_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,10 +20,10 @@ namespace ecommerceAPP.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
             modelBuilder.Entity("EFpfa.Models.Categorie", b =>
                 {
@@ -31,11 +31,11 @@ namespace ecommerceAPP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Nom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -48,20 +48,20 @@ namespace ecommerceAPP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DateCommande")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("IdClient")
                         .HasColumnType("int");
 
                     b.Property<double>("MontantTotal")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -76,17 +76,17 @@ namespace ecommerceAPP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateCommentaire")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("IdClient")
                         .HasColumnType("int");
@@ -112,10 +112,10 @@ namespace ecommerceAPP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DateEmission")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("IdClient")
                         .HasColumnType("int");
@@ -127,11 +127,11 @@ namespace ecommerceAPP.Migrations
                         .HasColumnType("int");
 
                     b.Property<double>("MontantTotal")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -150,7 +150,7 @@ namespace ecommerceAPP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CommandeId")
                         .HasColumnType("int");
@@ -162,7 +162,7 @@ namespace ecommerceAPP.Migrations
                         .HasColumnType("int");
 
                     b.Property<float>("PrixTotal")
-                        .HasColumnType("real");
+                        .HasColumnType("float");
 
                     b.Property<int>("ProduitId")
                         .HasColumnType("int");
@@ -185,24 +185,24 @@ namespace ecommerceAPP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AdresseLivraison")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("CommandeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("EstimationDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("IdCommande")
                         .HasColumnType("int");
 
                     b.Property<string>("StatusLivraison")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -217,13 +217,13 @@ namespace ecommerceAPP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CommandeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DatePaiement")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("IdClient")
                         .HasColumnType("int");
@@ -233,14 +233,14 @@ namespace ecommerceAPP.Migrations
 
                     b.Property<string>("MethodePaiement")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<double>("Totale")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.HasKey("Id");
 
@@ -257,21 +257,25 @@ namespace ecommerceAPP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategorieId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Nom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<double>("Prix")
-                        .HasColumnType("float");
+                        .HasColumnType("double");
 
                     b.Property<int>("StockQuantites")
                         .HasColumnType("int");
@@ -286,16 +290,16 @@ namespace ecommerceAPP.Migrations
             modelBuilder.Entity("EFpfa.Models.PromoCode", b =>
                 {
                     b.Property<string>("Code")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("DateExpiration")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<bool>("EstActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<float>("Reduction")
-                        .HasColumnType("real");
+                        .HasColumnType("float");
 
                     b.HasKey("Code");
 
@@ -308,34 +312,35 @@ namespace ecommerceAPP.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("MotDePasse")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Nom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Prenom")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
+                        .HasMaxLength(8)
+                        .HasColumnType("varchar(8)")
+                        .HasColumnName("Type");
 
                     b.HasKey("Id");
 
                     b.ToTable("Utilisateurs");
 
-                    b.HasDiscriminator<string>("Type").HasValue("Utilisateur");
+                    b.HasDiscriminator<string>("Type").HasValue("User");
 
                     b.UseTphMappingStrategy();
                 });
@@ -353,11 +358,11 @@ namespace ecommerceAPP.Migrations
 
                     b.Property<string>("Adresse")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Telephone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasDiscriminator().HasValue("Client");
                 });

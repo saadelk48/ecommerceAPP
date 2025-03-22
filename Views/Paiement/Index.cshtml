@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Paiement";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Sélectionnez un mode de paiement</h2>
+
+    <div class="d-flex justify-content-center gap-3">
+        <button class="btn btn-outline-primary" onclick="selectPayment('visa')">Visa</button>
+        <button class="btn btn-outline-primary" onclick="selectPayment('paypal')">PayPal</button>
+        <button class="btn btn-outline-primary" onclick="selectPayment('virement')">Virement</button>
+        <button class="btn btn-outline-primary" onclick="selectPayment('livraison')">Paiement à la livraison</button>
+    </div>
+
+    <div class="mt-4">
+        <form id="visaForm" class="payment-form d-none">
+            <h4>Payez avec Visa</h4>
+            <div class="mb-3">
+                <label class="form-label">Numéro de carte</label>
+                <input type="text" class="form-control" placeholder="XXXX XXXX XXXX XXXX">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Date d'expiration</label>
+                <input type="text" class="form-control" placeholder="MM/AA">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">CVV</label>
+                <input type="text" class="form-control" placeholder="XXX">
+            </div>
+        </form>
+
+        <form id="paypalForm" class="payment-form d-none">
+            <h4>Payez avec PayPal</h4>
+            <div class="mb-3">
+                <label class="form-label">Email PayPal</label>
+                <input type="email" class="form-control" placeholder="exemple@email.com">
+            </div>
+        </form>
+
+        <form id="virementForm" class="payment-form d-none">
+            <h4>Détails de Virement</h4>
+            <p>Veuillez effectuer un virement aux coordonnées suivantes :</p>
+            <ul>
+                <li>Banque : XYZ</li>
+                <li>IBAN : FR76 1234 5678 9012 3456 7890 123</li>
+                <li>BIC : ABCDXYZ</li>
+            </ul>
+        </form>
+
+        <div id="livraisonForm" class="payment-form d-none">
+            <h4>Paiement à la livraison</h4>
+            <p>Vous paierez en espèces ou par carte à la réception de votre commande.</p>
+        </div>
+
+        <!-- Formulaire de confirmation -->
+        <form asp-action="ConfirmerPaiement" asp-controller="Paiement" method="post">
+            <input type="hidden" id="modePaiement" name="modePaiement" />
+            <button type="submit" class="btn btn-success w-100 mt-3">Confirmer le paiement</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function selectPayment(method) {
+        document.querySelectorAll('.payment-form').forEach(form => form.classList.add('d-none'));
+
+        if (method === 'visa') {
+            document.getElementById('visaForm').classList.remove('d-none');
+        } else if (method === 'paypal') {
+            document.getElementById('paypalForm').classList.remove('d-none');
+        } else if (method === 'virement') {
+            document.getElementById('virementForm').classList.remove('d-none');
+        } else if (method === 'livraison') {
+            document.getElementById('livraisonForm').classList.remove('d-none');
+        }
+    }
+</script>

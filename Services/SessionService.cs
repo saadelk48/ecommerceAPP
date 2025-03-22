@@ -1,47 +1,59 @@
 ﻿using ecommerceAPP.Interfaces;
 using EFpfa.Models;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace ecommerceAPP.Services
 {
-    public class SessionService : ISessionService
-    {
-        public void SetUserSession(HttpContext httpContext, Utilisateur user)
-        {
-            httpContext.Session.SetInt32("UserId", user.Id);
-            httpContext.Session.SetString("UserEmail", user.Email);
-            httpContext.Session.SetString("UserRole", user.Type);
-            httpContext.Session.SetString("UserName", user.Nom);
-            httpContext.Session.SetString("IsAuthenticated", "true");
-        }
+	public class SessionService : ISessionService
+	{
+		private const string SessionKey = "UserSession";
 
-        public int? GetUserId(HttpContext httpContext)
-        {
-            return httpContext.Session.GetInt32("UserId");
-        }
+		public void SetUserSession(HttpContext context, Utilisateur user)
+		{
+			var sessionData = JsonConvert.SerializeObject(user);
+			context.Session.SetString(SessionKey, sessionData);
+			context.Session.SetInt32("UserId", user.Id);
+			context.Session.SetString("UserEmail", user.Email);
+			context.Session.SetString("UserRole", user.Type);
+			context.Session.SetString("UserName", user.Nom);
+			context.Session.SetString("IsAuthenticated", "true");
+		}
 
-        public string GetUserEmail(HttpContext httpContext)
-        {
-            return httpContext.Session.GetString("UserEmail");
-        }
+		public Utilisateur GetUserFromSession(HttpContext context)
+		{
+			var sessionData = context.Session.GetString(SessionKey);
+			return sessionData != null ? JsonConvert.DeserializeObject<Utilisateur>(sessionData) : null;
+		}
 
-        public string GetUserRole(HttpContext httpContext)
-        {
-            return httpContext.Session.GetString("UserRole");
-        }
+		public int? GetUserId(HttpContext httpContext)
+		{
+			return httpContext.Session.GetInt32("UserId");
+		}
 
-        public string GetUserName(HttpContext httpContext)
-        {
-            return httpContext.Session.GetString("UserName");
-        }
+		public string GetUserEmail(HttpContext httpContext)
+		{
+			return httpContext.Session.GetString("UserEmail");
+		}
 
-        public bool IsAuthenticated(HttpContext httpContext)
-        {
-            return httpContext.Session.GetString("IsAuthenticated") == "true";
-        }
+		public string GetUserRole(HttpContext httpContext)
+		{
+			return httpContext.Session.GetString("UserRole");
+		}
 
-        public void ClearSession(HttpContext httpContext)
-        {
-            httpContext.Session.Clear();
-        }
-    }
+		public string GetUserName(HttpContext httpContext)
+		{
+			return httpContext.Session.GetString("UserName");
+		}
+
+		public bool IsAuthenticated(HttpContext httpContext)
+		{
+			return httpContext.Session.GetString("IsAuthenticated") == "true";
+		}
+
+		public void ClearSession(HttpContext httpContext)
+		{
+			httpContext.Session.Clear();
+		}
+	}
 }

@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ecommerceAPP.ViewModels.UtilisateurVM
+@{
+    ViewData["Title"] = "Modifier Profil";
+}
+
+<h2>Modifier le profil</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<form asp-action="ModifierProfil" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Nom" class="form-label"></label>
+        <input asp-for="Nom" class="form-control" />
+        <span asp-validation-for="Nom" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Prenom" class="form-label"></label>
+        <input asp-for="Prenom" class="form-control" />
+        <span asp-validation-for="Prenom" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" type="email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MotDePasseActuel" class="form-label">Mot de passe actuel</label>
+        <input asp-for="MotDePasseActuel" type="password" class="form-control" />
+        <span asp-validation-for="MotDePasseActuel" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NouveauMotDePasse" class="form-label">Nouveau mot de passe</label>
+        <input asp-for="NouveauMotDePasse" type="password" class="form-control" />
+        <span asp-validation-for="NouveauMotDePasse" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ConfirmerMotDePasse" class="form-label">Confirmer le mot de passe</label>
+        <input asp-for="ConfirmerMotDePasse" type="password" class="form-control" />
+        <span asp-validation-for="ConfirmerMotDePasse" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+</form>

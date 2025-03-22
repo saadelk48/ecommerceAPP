@@ -90,10 +90,30 @@
 									</div>
 								</div>
 
-								<a class="user-box flaticon-user-3" asp-controller="Layouts" asp-action="Register"></a>
+								@if (Context.Session.GetString("UserEmail") != null)
+								{
+									<div class="dropdown">
+										<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											<i class="fas fa-user"></i> @Context.Session.GetString("UserEmail")
+										</button>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" asp-controller="Utilisateur" asp-action="ModifierProfil">Modifier Profil</a></li>
+											<li>
+												<form method="post" asp-controller="Auth" asp-action="Logout">
+													<button type="submit" class="dropdown-item">Déconnexion</button>
+												</form>
+											</li>
+										</ul>
+									</div>
+								}
+								else
+								{
+									<a asp-controller="Auth" asp-action="Login">Se connecter</a>
+								}
+
 								<div class="like-box">
-									<a class="user-box flaticon-bag" asp-controller="Cart" asp-action="Index"></a>
-									@await Component.InvokeAsync("CartCount")
+									<a class="user-box flaticon-bag"></a>
+									<span class="total-like">0</span>
 								</div>
 							</div>
 							<div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
@@ -148,11 +168,11 @@
 		</div>
 
 
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
+		<div class="container">
+			<main role="main" class="pb-3">
+				@RenderBody()
+			</main>
+		</div>
 
 		<!-- Main Footer -->
 		<footer class="main-footer">
@@ -248,6 +268,8 @@
 
 	</div>
 
+
+
 	<!-- Popup de Recherche -->
 	<div class="search-popup">
 		<div class="color-layer"></div>
@@ -285,7 +307,13 @@
 	<script src="~/js/nav-tool.js"></script>
 	<script src="~/js/jquery-ui.js"></script>
 	<script src="~/js/script.js" asp-append-version="true"></script>
-    
-    @await RenderSectionAsync("Scripts", required: false)
+
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

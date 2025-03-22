@@ -11,6 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Durée de vie de la session
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 builder.Services.AddScoped<IUtilisateurRepository,UtilisateurRepository>();
 builder.Services.AddScoped<IAuthService,AuthService>();
 builder.Services.AddScoped<ISessionService, SessionService>();
@@ -25,8 +31,12 @@ builder.Services.AddScoped<AuthorizationFilter>(sp =>
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8, 0, 34))
+        );
 });
+
 
 var app = builder.Build();
 
